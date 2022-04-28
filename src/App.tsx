@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
-import { css } from "@emotion/react";
+import { css, jsx } from "@emotion/react";
 import { responsive } from "./styles/mixins";
 import Matter from "matter-js";
 import useDimensions from "use-element-dimensions";
