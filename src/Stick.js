@@ -32,6 +32,7 @@ export default class Stick extends Component {
             transformOrigin: "top center",
             backgroundColor: this.props.color || "pink",
             zIndex: this.props.zIndex,
+            overflow: "hidden",
           }}
         />
       </div>

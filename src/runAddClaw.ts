@@ -42,14 +42,14 @@ const makeClawBox = ({ bowlSize, gameEntities }: any) => {
 const makeMiddleClaw = ({ bowlSize, gameEntities }: any) => {
   const clawMiddleStickBody = Matter.Bodies.rectangle(
     bowlSize.x + bowlSize.width / 2 - STICK_WID / 2 + responsive.horizontal(2),
-    bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2,
+    bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2 - 200,
     STICK_WID,
-    STICK_HEIGHT + 100
+    STICK_HEIGHT + 100 + 200
   );
 
   gameEntities.clawMiddleStick = {
     body: clawMiddleStickBody,
-    size: [STICK_WID, STICK_HEIGHT + responsive.vertical(20)],
+    size: [STICK_WID, STICK_HEIGHT + responsive.vertical(20) + 400],
     zIndex: 1400,
     color: "#515151",
     renderer: Stick,

@@ -7,7 +7,7 @@ import Ball from "./Ball";
 export const runAddBalls = ({ bowlSize, gameEntities }: any) => {
   let i = 0;
   const addBalls = () => {
-    if (i > 22) {
+    if (i > 30) {
       return;
     }
     // requestAnimationFrame(() => {
@@ -56,22 +56,4 @@ export const runAddBalls = ({ bowlSize, gameEntities }: any) => {
     // })
   };
   setTimeout(() => addBalls(), 100);
-  // setTimeout(() => {
-  //   console.log("remove");
-  //   if (
-  //     gameEntities &&
-  //     gameEntities.physics &&
-  //     gameEntities.physics.engine &&
-  //     gameEntities.physics.world
-  //   ) {
-  //     gameEntities.balls.sort((a, b) => {
-  //       return a.position.y - b.position.y;
-  //     });
-  //     gameEntities.balls.forEach((ball, index) => {
-  //       if (index < 5) {
-  //         Matter.World.remove(gameEntities.physics.world, ball);
-  //       }
-  //     });
-  //   }
-  // }, 15000);
 };

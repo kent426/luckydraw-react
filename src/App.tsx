@@ -29,9 +29,10 @@ export const styles = StyleSheet.create({
   coverUpClaw: {
     position: "absolute",
     top: 0,
-    width: MAX_WIDTH,
+    width: "100%",
     height: responsive.vertical(102),
     backgroundColor: colors.blue3,
+    zIndex: 2000,
     // backgroundColor: 'black',
   },
   gameHandler: {
