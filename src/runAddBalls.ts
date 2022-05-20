@@ -2,7 +2,7 @@ import { colors } from "./styles/variables";
 import { responsive } from "./styles/mixins";
 import Matter from "matter-js";
 import { BALL_COLORS, collisionCategory, BALL_RADIUS } from "./params";
-import { Ball } from "./Ball";
+import Ball from "./Ball";
 
 export const runAddBalls = ({ bowlSize, gameEntities }: any) => {
   let i = 0;

@@ -11,7 +11,7 @@ import {
   STICK_HEIGHT,
 } from "./params";
 // import TopClaw from './TopClaw';
-import { Stick } from "./Stick";
+import Stick from "./Stick";
 import TopClaw from "./TopClaw";
 
 export const runAddClaw = ({ bowlSize, gameEntities }: any) => {
