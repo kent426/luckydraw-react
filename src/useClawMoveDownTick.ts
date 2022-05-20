@@ -1,4 +1,5 @@
 import Matter from "matter-js";
+import { useCallback } from "react";
 import { STICK_HEIGHT, CLAW_VELOCITY_VERTICAL } from "./params";
 
 export function useClawMoveDownTick(
@@ -6,38 +7,41 @@ export function useClawMoveDownTick(
   clawMovedDown: any,
   setClawMovedDown: any
 ) {
-  return (entities: any) => {
-    const { bowlSize } = entities;
-    if (
-      buttonPressed &&
-      !clawMovedDown &&
-      entities.clawLeftStick &&
-      entities.clawRightStick
-    ) {
+  return useCallback(
+    (entities: any) => {
+      const { bowlSize } = entities;
       if (
-        entities.clawLeftStick.body.position.y + STICK_HEIGHT * 1.6 <
-        bowlSize.y + bowlSize.height
+        buttonPressed &&
+        !clawMovedDown &&
+        entities.clawLeftStick &&
+        entities.clawRightStick
       ) {
-        Matter.Body.translate(entities.clawBox.body, {
-          x: 0,
-          y: CLAW_VELOCITY_VERTICAL,
-        });
-        Matter.Body.translate(entities.clawLeftStick.body, {
-          x: 0,
-          y: CLAW_VELOCITY_VERTICAL,
-        });
-        Matter.Body.translate(entities.clawRightStick.body, {
-          x: 0,
-          y: CLAW_VELOCITY_VERTICAL,
-        });
-        Matter.Body.translate(entities.clawMiddleStick.body, {
-          x: 0,
-          y: CLAW_VELOCITY_VERTICAL,
-        });
-      } else {
-        setClawMovedDown(true);
+        if (
+          entities.clawLeftStick.body.position.y + STICK_HEIGHT * 1.6 <
+          bowlSize.y + bowlSize.height
+        ) {
+          Matter.Body.translate(entities.clawBox.body, {
+            x: 0,
+            y: CLAW_VELOCITY_VERTICAL,
+          });
+          Matter.Body.translate(entities.clawLeftStick.body, {
+            x: 0,
+            y: CLAW_VELOCITY_VERTICAL,
+          });
+          Matter.Body.translate(entities.clawRightStick.body, {
+            x: 0,
+            y: CLAW_VELOCITY_VERTICAL,
+          });
+          Matter.Body.translate(entities.clawMiddleStick.body, {
+            x: 0,
+            y: CLAW_VELOCITY_VERTICAL,
+          });
+        } else {
+          setClawMovedDown(true);
+        }
       }
-    }
-    return entities;
-  };
+      return entities;
+    },
+    [buttonPressed, clawMovedDown, setClawMovedDown]
+  );
 }

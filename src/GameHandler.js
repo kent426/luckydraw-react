@@ -106,12 +106,12 @@ class GameHandler extends React.Component {
         console.log("dx", dx);
         console.log("midX", midX);
         console.log("touchX", touchX);
-        if (this.isAllowedResponder && dx > 20) {
+        if (this.isAllowedResponder && dx > 5) {
           // this.setState({
           //   direction: 'right'
           // })
           setRight && setRight();
-        } else if (this.isAllowedResponder && dx < -20) {
+        } else if (this.isAllowedResponder && dx < -5) {
           // this.setState({
           //   direction: 'left'
           // })

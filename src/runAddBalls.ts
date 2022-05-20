@@ -56,4 +56,22 @@ export const runAddBalls = ({ bowlSize, gameEntities }: any) => {
     // })
   };
   setTimeout(() => addBalls(), 100);
+  // setTimeout(() => {
+  //   console.log("remove");
+  //   if (
+  //     gameEntities &&
+  //     gameEntities.physics &&
+  //     gameEntities.physics.engine &&
+  //     gameEntities.physics.world
+  //   ) {
+  //     gameEntities.balls.sort((a, b) => {
+  //       return a.position.y - b.position.y;
+  //     });
+  //     gameEntities.balls.forEach((ball, index) => {
+  //       if (index < 5) {
+  //         Matter.World.remove(gameEntities.physics.world, ball);
+  //       }
+  //     });
+  //   }
+  // }, 15000);
 };
