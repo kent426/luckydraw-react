@@ -22,7 +22,7 @@ export const Ball = (props: any) => {
   //   );
   // }
 
-  console.log("props", props);
+  // console.log("props", props);
   return (
     <div
       css={css`

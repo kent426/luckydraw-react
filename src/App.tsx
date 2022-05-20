@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { css, jsx } from "@emotion/react";
-import { responsive } from "./styles/mixins";
+import { MAX_HEIGHT, MAX_WIDTH, responsive } from "./styles/mixins";
 import Matter from "matter-js";
 import useDimensions from "use-element-dimensions";
 import { useRef } from "react";
@@ -18,12 +18,40 @@ import { useStickRotateTick } from "./useStickRotateTick";
 import { useStickMoveUp } from "./useStickMoveUp";
 import { useDecideColorTick } from "./useDecideColorTick";
 import { useSetCollideTick } from "./useSetCollideTick";
-import { View, StyleSheet, Platform, Dimensions } from "react-native";
+import { View, StyleSheet, Platform, Dimensions, Button } from "react-native";
 import { colors } from "./styles/variables";
 import GameHandler from "./GameHandler";
 import { HandlerView } from "./HandlerView";
 
 Matter.Common.isElement = () => false;
+
+export const styles = StyleSheet.create({
+  coverUpClaw: {
+    position: "absolute",
+    top: 0,
+    width: MAX_WIDTH,
+    height: responsive.vertical(102),
+    backgroundColor: colors.blue3,
+    // backgroundColor: 'black',
+  },
+  gameHandler: {
+    position: "absolute",
+    bottom: responsive.vertical(120),
+    width: responsive.vertical(150),
+    height: responsive.vertical(100),
+    zIndex: 900,
+    // backgroundColor: 'green',
+  },
+  garbBtn: {
+    position: "absolute",
+    bottom: responsive.vertical(75),
+    alignSelf: "center",
+    height: responsive.vertical(34),
+    width: responsive.horizontal(117),
+    borderRadius: 50,
+    zIndex: 900,
+  },
+});
 
 function initEntities() {
   const engine = Matter.Engine.create();
@@ -113,6 +141,8 @@ function App() {
     <div
       css={css`
         width: 100%;
+        max-width: ${MAX_WIDTH}px;
+        max-height: ${MAX_HEIGHT}px;
         height: 100%;
         background-color: #8deff7;
         display: flex;
@@ -123,15 +153,18 @@ function App() {
     >
       <div css={cssbox} ref={onLayoutBowl} />
       <GameEngine
-        style={{ width: window.innerWidth, height: window.innerHeight }}
+        style={{
+          width: MAX_WIDTH,
+          height: MAX_HEIGHT,
+        }}
         systems={[
           updateEngineTick,
           controlClawTick,
-          // setCollideTick,
-          // clawMoveDownTick,
-          // stickRotateTick,
-          // stickMoveUp,
-          // decideColor,
+          setCollideTick,
+          clawMoveDownTick,
+          stickRotateTick,
+          stickMoveUp,
+          decideColor,
           // this.DecideResultAndColor,
           // this.MoveUp,
         ]}
@@ -139,32 +172,15 @@ function App() {
         ref={gameEngineRef}
       />
       <View style={styles.coverUpClaw} />
+      <View style={styles.garbBtn}>
+        <Button title="Grab" onPress={onPressGrab} />
+      </View>
+
       <GameHandler {...gameHandlerHandlers} style={styles.gameHandler}>
         <HandlerView direction={direction} />
       </GameHandler>
     </div>
   );
 }
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
-export const styles = StyleSheet.create({
-  coverUpClaw: {
-    position: "absolute",
-    top: 0,
-    width: width,
-    height: responsive.vertical(102),
-    backgroundColor: colors.blue3,
-    // backgroundColor: 'black',
-  },
-  gameHandler: {
-    position: "absolute",
-    bottom: responsive.vertical(80),
-    width: responsive.vertical(150),
-    height: responsive.vertical(100),
-    zIndex: 900,
-    // backgroundColor: 'green',
-  },
-});
 
 export default App;

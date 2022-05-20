@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { View, Image } from "react-native";
 import { array, object, string } from "prop-types";
 import { dimensions } from "./styles/variables";
+import { MAX_HEIGHT, MAX_WIDTH } from "./styles/mixins";
 
-const responsiveVertical = (val) => (val / 667) * dimensions.height;
-const responsiveHorizontal = (val) => (val / 375) * dimensions.width;
+const responsiveVertical = (val) =>
+  Math.floor((val / 667) * Math.min(window.innerHeight, MAX_HEIGHT));
+const responsiveHorizontal = (val) =>
+  Math.floor((val / 375) * Math.min(window.innerWidth, MAX_WIDTH));
 
 export default class TopClaw extends Component {
   constructor(props) {

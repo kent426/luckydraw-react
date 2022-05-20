@@ -44,7 +44,7 @@ const makeMiddleClaw = ({ bowlSize, gameEntities }: any) => {
     bowlSize.x + bowlSize.width / 2 - STICK_WID / 2 + responsive.horizontal(2),
     bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2,
     STICK_WID,
-    STICK_HEIGHT
+    STICK_HEIGHT + 100
   );
 
   gameEntities.clawMiddleStick = {
@@ -53,6 +53,7 @@ const makeMiddleClaw = ({ bowlSize, gameEntities }: any) => {
     zIndex: 1400,
     color: "#515151",
     renderer: Stick,
+    direction: 0,
   };
 
   return clawMiddleStickBody;
@@ -85,13 +86,14 @@ const makeRightClaw = ({ bowlSize, gameEntities }: any) => {
   //   mask: collisionCategory.CLAW | collisionCategory.SELECT,
   // };
 
-  clawRightStickBody.angle = Math.PI * 0.1;
+  clawRightStickBody.angle = Math.PI * 0.09;
 
   gameEntities.clawRightStick = {
     body: clawRightStickBody,
     size: [STICK_WID, STICK_HEIGHT],
     color: "#515151",
     renderer: Stick,
+    direction: 1,
   };
 
   return clawRightStickBody;
@@ -122,13 +124,14 @@ const makeLeftClaw = ({ bowlSize, gameEntities }: any) => {
   //   // eslint-disable-next-line no-bitwise
   //   mask: collisionCategory.CLAW | collisionCategory.SELECT,
   // };
-  clawLeftStickBody.angle = -Math.PI * 0.1;
+  clawLeftStickBody.angle = -Math.PI * 0.09;
 
   gameEntities.clawLeftStick = {
     body: clawLeftStickBody,
     size: [STICK_WID, STICK_HEIGHT],
     color: "#515151",
     renderer: Stick,
+    direction: -1,
   };
 
   return clawLeftStickBody;

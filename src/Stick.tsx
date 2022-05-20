@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 // import React from "react";
 
-export const Stick = ({ size, body, zIndex, color }: any) => {
+export const Stick = ({ size, body, zIndex, color, direction }: any) => {
   const width = size[0];
   const height = size[1];
   const x = body.position.x - width / 2;
@@ -17,7 +17,8 @@ export const Stick = ({ size, body, zIndex, color }: any) => {
         top: ${y}px;
         width: ${width}px;
         height: ${height}px;
-        transform: translateX(0) rotate(${rot}deg);
+        transform: translateX(${5 * direction}px) rotate(${rot}rad);
+        transform-origin: top center;
         background-color: ${color || "pink"};
         z-index: ${zIndex};
       `}
