@@ -1,9 +1,10 @@
 import Matter from "matter-js";
 import { PINK_BORDER_WID } from "./params";
+import { OFFSET_FOR_CENTERING } from "./styles/mixins";
 
 export const runAddThreeWalls = ({ bowlSize, gameEntities }: any) => {
   const bottomWall = Matter.Bodies.rectangle(
-    bowlSize.x + bowlSize.width / 2,
+    bowlSize.x + bowlSize.width / 2 - OFFSET_FOR_CENTERING,
     bowlSize.y + bowlSize.height + 100 / 2 - 5 - PINK_BORDER_WID,
     bowlSize.width,
     100,
@@ -14,7 +15,7 @@ export const runAddThreeWalls = ({ bowlSize, gameEntities }: any) => {
   );
 
   const leftWall = Matter.Bodies.rectangle(
-    bowlSize.x + PINK_BORDER_WID / 2,
+    bowlSize.x + PINK_BORDER_WID / 2 - OFFSET_FOR_CENTERING,
     bowlSize.y + bowlSize.height / 2,
     PINK_BORDER_WID + 7,
     bowlSize.height,
@@ -24,7 +25,7 @@ export const runAddThreeWalls = ({ bowlSize, gameEntities }: any) => {
     }
   );
   const rightWall = Matter.Bodies.rectangle(
-    bowlSize.x + bowlSize.width - PINK_BORDER_WID / 2,
+    bowlSize.x + bowlSize.width - PINK_BORDER_WID / 2 - OFFSET_FOR_CENTERING,
     bowlSize.y + bowlSize.height / 2,
     PINK_BORDER_WID,
     bowlSize.height,

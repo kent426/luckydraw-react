@@ -1,5 +1,5 @@
 import { colors } from "./styles/variables";
-import { responsive } from "./styles/mixins";
+import { responsive, OFFSET_FOR_CENTERING } from "./styles/mixins";
 import Matter from "matter-js";
 import {
   BALL_COLORS,
@@ -25,7 +25,7 @@ export const runAddClaw = ({ bowlSize, gameEntities }: any) => {
 
 const makeClawBox = ({ bowlSize, gameEntities }: any) => {
   const clawBoxBody = Matter.Bodies.rectangle(
-    bowlSize.x + bowlSize.width / 2,
+    bowlSize.x + bowlSize.width / 2 - OFFSET_FOR_CENTERING,
     bowlSize.y + CLAWTOP_OFFSET + CLAWBOX_HEI / 2,
     CLAWBOX_WID,
     CLAWBOX_HEI
@@ -41,7 +41,11 @@ const makeClawBox = ({ bowlSize, gameEntities }: any) => {
 
 const makeMiddleClaw = ({ bowlSize, gameEntities }: any) => {
   const clawMiddleStickBody = Matter.Bodies.rectangle(
-    bowlSize.x + bowlSize.width / 2 - STICK_WID / 2 + responsive.horizontal(2),
+    bowlSize.x +
+      bowlSize.width / 2 -
+      STICK_WID / 2 +
+      responsive.horizontal(2) -
+      OFFSET_FOR_CENTERING,
     bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2 - 200,
     STICK_WID,
     STICK_HEIGHT + 100 + 200
@@ -65,7 +69,8 @@ const makeRightClaw = ({ bowlSize, gameEntities }: any) => {
       bowlSize.width / 2 +
       CLAWBOX_WID / 2 -
       STICK_WID / 2 -
-      responsive.horizontal(5),
+      responsive.horizontal(5) -
+      OFFSET_FOR_CENTERING,
     bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2,
     STICK_WID,
     STICK_HEIGHT,
@@ -105,7 +110,8 @@ const makeLeftClaw = ({ bowlSize, gameEntities }: any) => {
       bowlSize.width / 2 -
       CLAWBOX_WID / 2 +
       STICK_WID / 2 +
-      responsive.horizontal(5),
+      responsive.horizontal(5) -
+      OFFSET_FOR_CENTERING,
     bowlSize.y + CLAWBOX_HEI + CLAWTOP_OFFSET + STICK_HEIGHT / 2,
     STICK_WID,
     STICK_HEIGHT,

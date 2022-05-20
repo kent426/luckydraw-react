@@ -9,3 +9,6 @@ export const responsive = {
   vertical,
   horizontal,
 };
+
+// export const OFFSET_FOR_CENTERING = (window.innerWidth - MAX_WIDTH) / 2;
+export const OFFSET_FOR_CENTERING = 0;

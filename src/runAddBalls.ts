@@ -1,5 +1,5 @@
 import { colors } from "./styles/variables";
-import { responsive } from "./styles/mixins";
+import { OFFSET_FOR_CENTERING, responsive } from "./styles/mixins";
 import Matter from "matter-js";
 import { BALL_COLORS, collisionCategory, BALL_RADIUS } from "./params";
 import Ball from "./Ball";
@@ -14,7 +14,7 @@ export const runAddBalls = ({ bowlSize, gameEntities }: any) => {
     const ran =
       Math.floor(Math.random() * BALL_RADIUS * 5) * (i % 2 === 1 ? 1 : -1);
     const ballBody = Matter.Bodies.circle(
-      bowlSize.x + bowlSize.width / 2 + ran,
+      bowlSize.x + bowlSize.width / 2 + ran - OFFSET_FOR_CENTERING,
       bowlSize.y + bowlSize.height / 2 - responsive.vertical(200),
       BALL_RADIUS,
       {
