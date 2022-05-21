@@ -10,8 +10,14 @@ const colorToPriceCat = {
   "#77C9CC": "GREEN",
   "#6D6D6D": "GREY",
 } as any;
+const priceCatToColor = Object.keys(colorToPriceCat).reduce((acc, key) => {
+  acc[colorToPriceCat[key]] = key;
+  return acc;
+}, {});
 
 type F = (color: string) => string;
+
+export const priceCatToColorFun = (tag) => priceCatToColor[tag];
 
 export const priceCatFUN: F = (color) => colorToPriceCat[color];
 

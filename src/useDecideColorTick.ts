@@ -26,7 +26,11 @@ export const useDecideColorTick = ({
             const isPicked =
               Math.abs(
                 selectedBall.position.y - entities.clawLeftStick.body.position.y
-              ) < responsive.vertical(30);
+              ) < responsive.vertical(60);
+            console.log(
+              "price dis",
+              selectedBall.position.y - entities.clawLeftStick.body.position.y
+            );
             const { color } = selectedBall;
             const priceCat = priceCatFUN(color);
             if (isPicked) {

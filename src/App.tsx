@@ -27,7 +27,7 @@ import { BlurBgView } from "./BlurBgView";
 import { Button } from "./Button";
 import { Popup } from "./Popup";
 import { useDebounce } from "use-hooks";
-import { SpinnerDotted } from "spinners-react";
+import { SpinnerOverlay } from "./SpinnerOverlay";
 
 Matter.Common.isElement = () => false;
 
@@ -88,7 +88,15 @@ const cssbox = css`
   border-color: #ff799f;
 `;
 
-function App() {
+function App({
+  reloadCallBack,
+  colorDecideCb = () => {},
+  selectedColorCode,
+}: {
+  reloadCallBack: () => void;
+  colorDecideCb?: (any) => void;
+  selectedColorCode?: string;
+}) {
   const gameEngineRef = useRef(null);
   const [bowlSize, onLayoutBowl] = useDimensions();
   useEffect(() => {
@@ -135,7 +143,7 @@ function App() {
 
   const stickMoveUp = useStickMoveUp({ clawMovedDown, setClawMovedUp });
 
-  const dbClawMovedUp = useDebounce(clawMovedUp, 2000);
+  const dbClawMovedUp = useDebounce(clawMovedUp, 1500);
 
   console.log("clawMovedDown", clawMovedDown);
   console.log("clawMovedUp", clawMovedUp);
@@ -144,7 +152,7 @@ function App() {
     clawMovedUp,
     resultDecided,
     setresultDecided,
-    colorDecideCb: () => {},
+    colorDecideCb,
     gameEngineRef,
   });
 
@@ -193,31 +201,10 @@ function App() {
       </GameHandler>
 
       {dbClawMovedUp && <BlurBgView />}
-      {dbClawMovedUp && <Popup />}
-      {clawMovedUp && !dbClawMovedUp && (
-        <div
-          css={css`
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 11000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          `}
-        >
-          <SpinnerDotted
-            size={87}
-            thickness={180}
-            speed={180}
-            color={colors.yellow_heavy}
-          />
-        </div>
+      {dbClawMovedUp && (
+        <Popup onPress={reloadCallBack} selectedColorCode={selectedColorCode} />
       )}
+      {clawMovedUp && !dbClawMovedUp && <SpinnerOverlay />}
     </div>
   );
 }

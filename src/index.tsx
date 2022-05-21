@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { css, jsx } from "@emotion/react";
 import { GlobalStyle } from "./styles/global";
 import { colors } from "./styles/variables";
+import { AppWithLoadControl } from "./AppWithLoadControl";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +21,7 @@ ReactDOM.render(
         background-color: ${colors.blue5};
       `}
     >
-      <App />
+      <AppWithLoadControl />
     </div>
   </React.StrictMode>,
   document.getElementById("root")
