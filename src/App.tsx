@@ -22,6 +22,8 @@ import { View, StyleSheet, Platform, Dimensions, Button } from "react-native";
 import { colors } from "./styles/variables";
 import GameHandler from "./GameHandler";
 import { HandlerView } from "./HandlerView";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 Matter.Common.isElement = () => false;
 
@@ -50,10 +52,25 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     height: responsive.vertical(34),
     width: responsive.horizontal(117),
-
+    display: "flex",
+    flex: 1,
     zIndex: 900,
   },
 });
+
+const cssBtnColor = css`
+            display: flex;
+            flex: 1;
+            .aws-btn--visible {
+              flex: 1;
+            }
+            .aws-btn {
+              --button-primary-color: ${colors.pink2};
+              --button-primary-color-hover: ${colors.pink4};
+              --button-primary-color-dark: : ${colors.pink3};
+              --button-primary-color-active: ${colors.pink4};
+            }
+          `;
 
 function initEntities() {
   const engine = Matter.Engine.create();
@@ -176,8 +193,20 @@ function App() {
         ref={gameEngineRef}
       />
       <View style={styles.coverUpClaw} />
+
       <View style={styles.garbBtn}>
-        <Button title="Grab" onPress={onPressGrab} />
+        <div css={cssBtnColor}>
+          <AwesomeButton
+            type="primary"
+            onPress={onPressGrab}
+
+            // borderRadius={responsive.vertical(20)}
+            // backgroundColor={colors.pink2}
+            // backgroundDarker={colors.pink3}
+          >
+            Grab
+          </AwesomeButton>
+        </div>
       </View>
 
       <GameHandler {...gameHandlerHandlers} style={styles.gameHandler}>

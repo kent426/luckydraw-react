@@ -1,0 +1,53 @@
+diff --git a/node_modules/react-awesome-button/index.d.ts b/node_modules/react-awesome-button/index.d.ts
+index 72ccf32..88e1caf 100644
+--- a/node_modules/react-awesome-button/index.d.ts
++++ b/node_modules/react-awesome-button/index.d.ts
+@@ -8,30 +8,30 @@ declare module 'react-awesome-button' {
+ 
+   export interface AwesomeButtonProps {
+     action?(): void;
+-    active: boolean;
+-    blocked: boolean;
++    active?: boolean;
++    blocked?: boolean;
+     children: React.ReactNode;
+-    className: string;
+-    cssModule: object;
+-    disabled: boolean;
++    className?: string;
++    cssModule?: object;
++    disabled?: boolean;
+     element?(): void;
+-    href: string;
+-    moveEvents: boolean;
++    href?: string;
++    moveEvents?: boolean;
+     onPress?(): void;
+     onReleased?(): void;
+-    placeholder: boolean;
+-    ripple: boolean;
+-    rootElement: string;
+-    size: string;
+-    style: object;
+-    target: string;
+-    title: string;
+-    to: string;
+-    type: string;
+-    visible: boolean;
++    placeholder?: boolean;
++    ripple?: boolean;
++    rootElement?: string;
++    size?: string;
++    style?: object;
++    target?: string;
++    title?: string;
++    to?: string;
++    type?: string;
++    visible?: boolean;
+   }
+ 
+-  export default class AwesomeButton extends Component<
++  export class AwesomeButton extends Component<
+     AwesomeButtonProps,
+     {}
+   > {}
