@@ -18,12 +18,16 @@ import { useStickRotateTick } from "./useStickRotateTick";
 import { useStickMoveUp } from "./useStickMoveUp";
 import { useDecideColorTick } from "./useDecideColorTick";
 import { useSetCollideTick } from "./useSetCollideTick";
-import { View, StyleSheet, Platform, Dimensions, Button } from "react-native";
+import { View, StyleSheet, Platform, Dimensions } from "react-native";
 import { colors } from "./styles/variables";
 import GameHandler from "./GameHandler";
 import { HandlerView } from "./HandlerView";
-import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+import { BlurBgView } from "./BlurBgView";
+import { Button } from "./Button";
+import { Popup } from "./Popup";
+import { useDebounce } from "use-hooks";
+import { SpinnerDotted } from "spinners-react";
 
 Matter.Common.isElement = () => false;
 
@@ -57,20 +61,6 @@ export const styles = StyleSheet.create({
     zIndex: 900,
   },
 });
-
-const cssBtnColor = css`
-            display: flex;
-            flex: 1;
-            .aws-btn--visible {
-              flex: 1;
-            }
-            .aws-btn {
-              --button-primary-color: ${colors.pink2};
-              --button-primary-color-hover: ${colors.pink4};
-              --button-primary-color-dark: : ${colors.pink3};
-              --button-primary-color-active: ${colors.pink4};
-            }
-          `;
 
 function initEntities() {
   const engine = Matter.Engine.create();
@@ -145,6 +135,8 @@ function App() {
 
   const stickMoveUp = useStickMoveUp({ clawMovedDown, setClawMovedUp });
 
+  const dbClawMovedUp = useDebounce(clawMovedUp, 2000);
+
   console.log("clawMovedDown", clawMovedDown);
   console.log("clawMovedUp", clawMovedUp);
 
@@ -194,24 +186,38 @@ function App() {
       />
       <View style={styles.coverUpClaw} />
 
-      <View style={styles.garbBtn}>
-        <div css={cssBtnColor}>
-          <AwesomeButton
-            type="primary"
-            onPress={onPressGrab}
-
-            // borderRadius={responsive.vertical(20)}
-            // backgroundColor={colors.pink2}
-            // backgroundDarker={colors.pink3}
-          >
-            Grab
-          </AwesomeButton>
-        </div>
-      </View>
+      <View style={styles.garbBtn}>{<Button onPress={onPressGrab} />}</View>
 
       <GameHandler {...gameHandlerHandlers} style={styles.gameHandler}>
         <HandlerView direction={direction} />
       </GameHandler>
+
+      {dbClawMovedUp && <BlurBgView />}
+      {dbClawMovedUp && <Popup />}
+      {clawMovedUp && !dbClawMovedUp && (
+        <div
+          css={css`
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 11000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          `}
+        >
+          <SpinnerDotted
+            size={87}
+            thickness={180}
+            speed={180}
+            color={colors.yellow_heavy}
+          />
+        </div>
+      )}
     </div>
   );
 }
