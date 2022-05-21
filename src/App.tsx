@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     height: responsive.vertical(102),
     backgroundColor: colors.blue3,
     zIndex: 2000,
+    borderRadius: 10,
     // backgroundColor: 'black',
   },
   gameHandler: {
@@ -49,7 +50,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     height: responsive.vertical(34),
     width: responsive.horizontal(117),
-    borderRadius: 50,
+
     zIndex: 900,
   },
 });
@@ -150,6 +151,8 @@ function App() {
         align-items: center;
         justify-content: center;
         position: relative;
+        border-radius: 10px;
+        /* border: 2px solid white; */
       `}
     >
       <div css={cssbox} ref={onLayoutBowl} />

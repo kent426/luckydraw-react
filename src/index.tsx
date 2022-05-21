@@ -4,9 +4,12 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { css, jsx } from "@emotion/react";
+import { GlobalStyle } from "./styles/global";
+import { colors } from "./styles/variables";
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <div
       css={css`
         display: flex;
@@ -15,7 +18,7 @@ ReactDOM.render(
         align-items: center;
         justify-content: center;
         position: relative;
-        background-color: aliceblue;
+        background-color: ${colors.blue5};
       `}
     >
       <App />
