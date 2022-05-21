@@ -6,6 +6,7 @@ import { css, jsx } from "@emotion/react";
 import { GlobalStyle } from "./styles/global";
 import { colors } from "./styles/variables";
 import { AppWithLoadControl } from "./AppWithLoadControl";
+import { GitHubIcon } from "./GitHubIcon";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.render(
       `}
     >
       <AppWithLoadControl />
+      <GitHubIcon />
     </div>
   </React.StrictMode>,
   document.getElementById("root")
