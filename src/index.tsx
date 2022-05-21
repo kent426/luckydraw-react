@@ -9,12 +9,13 @@ ReactDOM.render(
   <React.StrictMode>
     <div
       css={css`
-        /* display: flex;
+        display: flex;
         width: 100%;
         height: 100%;
         align-items: center;
         justify-content: center;
-        position: relative; */
+        position: relative;
+        background-color: aliceblue;
       `}
     >
       <App />

@@ -23,6 +23,9 @@ class GameHandler extends React.Component {
       //   return true;
       // },
 
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+
       // Should child views be prevented from becoming responder of subsequent touches?
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => () => {
         console.log("onMoveShouldSetPanResponderCapture");
@@ -46,13 +49,15 @@ class GameHandler extends React.Component {
         // );
         const touchX = evt.nativeEvent.pageX;
         const midX = this.state.x_hand + this.state.width_hand / 2;
-        const withInRange = Math.abs(touchX - midX) <= 25;
+        const withInRange = Math.abs(touchX - midX) >= 25;
         this.isAllowedResponder = this.state.y_hand !== 0 && withInRange;
         console.log("this.state.x_hand", this.state.x_hand);
+        console.log("this.state.y_hand", this.state.y_hand);
         console.log("this.width_hand", this.width_hand);
         console.log("this.state.width_hand", this.state.width_hand);
         console.log("touchX", touchX);
         console.log("midx", midX);
+        console.log("withInRange", withInRange);
         console.log("onStartShouldSetPanResponder", this.isAllowedResponder);
         return this.isAllowedResponder;
       },
@@ -75,11 +80,14 @@ class GameHandler extends React.Component {
         console.log("onPanResponderGrant");
         const touchX = evt.nativeEvent.pageX;
         const midX = this.state.x_hand + this.state.width_hand / 2;
-        const withInRange = Math.abs(touchX - midX) <= 25;
-        this.isAllowedResponder = this.state.y_hand !== 0 && withInRange;
+        const withInRange = Math.abs(touchX - midX) >= 25;
+        // this.isAllowedResponder = this.state.y_hand !== 0 && withInRange;
+        this.isAllowedResponder = true;
         // console.log('touchX', touchX);
         // console.log('midX', midX);
-        // console.log('onPanResponderGrant', this.isAllowedResponder);
+        console.log("this.state.y_hand", this.state.y_hand);
+        console.log("withInRange", withInRange);
+        console.log("onPanResponderGrant", this.isAllowedResponder);
         return this.isAllowedResponder;
         // This is the time to highlight and show the user what is happening
       },

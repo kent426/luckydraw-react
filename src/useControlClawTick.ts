@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { responsive } from "./styles/mixins";
+import { OFFSET_FOR_CENTERING, responsive } from "./styles/mixins";
 import Matter from "matter-js";
 
 // const CLAW_VELOCITY_HORIZONTAL = Platform.OS === 'ios' ? 2 : 3;
@@ -21,7 +21,7 @@ export function useControlClawTick(
         if (
           direction === "left" &&
           entities.clawLeftStick.body.position.x >
-            bowlSize.x + responsive.horizontal(20)
+            bowlSize.x + responsive.horizontal(20) - OFFSET_FOR_CENTERING
         ) {
           Matter.Body.translate(entities.clawBox.body, {
             x: -CLAW_VELOCITY_HORIZONTAL,
@@ -43,7 +43,10 @@ export function useControlClawTick(
         if (
           direction === "right" &&
           entities.clawRightStick.body.position.x <
-            bowlSize.x + bowlSize.width - responsive.horizontal(20)
+            bowlSize.x +
+              bowlSize.width -
+              responsive.horizontal(20) -
+              OFFSET_FOR_CENTERING
         ) {
           Matter.Body.translate(entities.clawBox.body, {
             x: +CLAW_VELOCITY_HORIZONTAL,
