@@ -1,46 +1,18 @@
-# Getting Started with Create React App
+# Luckydraw-react
+
+Control the joystick and move it to your chosen angle or position.
+Press GRAB! to drop the claw and try to grab a ball.
+
+<p align="left">
+	<a target="_blank" href="https://luckydraw-demo.vercel.app/"><img src="./docs/image.png" width="190" /></a>
+</p>
+
+Lucky Draw made using react.js.
+The original implementation is written in the context of a react-native app.
+With the help of [react-native-web](https://necolas.github.io/react-native-web/), it is ported into this web version.
+
+The app is made using various libs, including [react-game-engine](https://github.com/bberak/react-game-engine), [matter.js](https://github.com/liabru/matter-js), [react-awesome-button](https://github.com/rcaferati/react-awesome-button) and [spinners-react](https://github.com/adexin/spinners-react).
+
+Interesting concept to learn: [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system) in [react-game-engine](https://github.com/bberak/react-game-engine).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
